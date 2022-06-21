@@ -12,11 +12,11 @@ class TV(Device):
 
     def enable(self):
         self.__enabled = True
-        return "Esta habilitado"
+        print("Esta habilitado")
 
     def disable(self):
         self.__enabled = False
-        return "Esta deshabilitado"
+        print("Esta deshabilitado")
 
     def get_volume(self):
         return self.__volume
