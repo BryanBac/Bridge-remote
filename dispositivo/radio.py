@@ -31,12 +31,14 @@ class Radio(Device):
         self.__volume = percent
         print(f"Volumen: {percent}")
 
-    def get_channel(self) -> float:
-        return self.__frecuencias[self.__channel]
+    def get_channel(self) -> int:
+        return self.__channel
 
     def set_channel(self, channel: int):
-        if channel < len(self.__frecuencias):
+        if 0 <= channel < len(self.__frecuencias):
+            print(self.__channel)
             self.__channel = channel
+            print(self.__channel)
             print(f"Frecuencia: {self.__frecuencias[self.__channel]}")
         else:
             print("Frecuencia no válida")

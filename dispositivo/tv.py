@@ -12,22 +12,22 @@ class TV(Device):
 
     def enable(self):
         self.__enabled = True
-        return 'Esta habilitado'
+        return "Esta habilitado"
 
     def disable(self):
         self.__enabled = False
-        return 'Esta deshabilitado'
+        return "Esta deshabilitado"
 
     def get_volume(self):
         return self.__volume
 
     def set_volume(self, percent: int):
         self.__volume = percent
-        print(f'Volumen: {percent}')
+        print(f"Volumen: {percent}")
 
     def get_channel(self):
         return self.__channel
 
     def set_channel(self, channel: int):
         self.__channel = channel
-        print(f'Canal: {self.__channel}')
+        print(f"Canal: {self.__channel}")
