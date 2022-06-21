@@ -6,4 +6,4 @@ class AdvancedRemote(Remote):
         super.__init__()
 
     def mute(self):
-        raise NotImplementedError
+        self.__device.set_volume(0)
