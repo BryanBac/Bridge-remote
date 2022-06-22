@@ -31,9 +31,8 @@ class SmartTV(Device):
 
     def set_channel(self, channel: int):
         self.__channel = channel
-        if -1 < self.__channel < len(self.__aplicaciones):
-            print(f"Aplicación: {self.__aplicaciones[self.__channel]}")
-        elif self.__channel >= len(self.__aplicaciones):
+        if self.__channel >= len(self.__aplicaciones):
             self.__channel -= 1
         elif self.__channel <= -1:
             self.__channel = 0
+        print(f"Aplicación: {self.__aplicaciones[self.__channel]}")
