@@ -4,7 +4,7 @@ from control.remote import Remote
 
 class Client:
     def __init__(self, tipo: bool, control):
-        self.control
+        self.control = control
         if tipo:
             self.cotrol: Remote = control
         else:

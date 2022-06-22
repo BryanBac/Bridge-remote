@@ -6,8 +6,26 @@ from dispositivo.tv import TV
 from dispositivo.smartTv import SmartTV
 
 
+def definir_cliente() -> Client:
+    if tiene_control and tiene_dispositivo:
+        if ctrl_opcion == 1 and dispositivo_opcion == 1:
+            user = Client(True, Remote(Radio()))
+        elif ctrl_opcion == 1 and dispositivo_opcion == 2:
+            user = Client(True, Remote(TV()))
+        elif ctrl_opcion == 1 and dispositivo_opcion == 3:
+            user = Client(True, Remote(SmartTV()))
+        elif ctrl_opcion == 2 and dispositivo_opcion == 1:
+            user = Client(False, AdvancedRemote(Radio()))
+        elif ctrl_opcion == 2 and dispositivo_opcion == 2:
+            user = Client(False, AdvancedRemote(TV()))
+        else:
+            user = Client(False, AdvancedRemote(SmartTV()))
+        return user
+
+
 opcion: int = 8
-tiene_todo: int = 0
+tiene_control: bool = False
+tiene_dispositivo: bool = False
 ctrl_opcion: int = 0
 dispositivo_opcion: int = 0
 usuario: Client
@@ -24,7 +42,8 @@ while opcion != 4:
         print("2. Control Genial")
         ctrl_opcion = int(input("Ingrese su opción: "))
         if 0 < ctrl_opcion < 3:
-            tiene_todo += 1
+            tiene_control = True
+            usuario = definir_cliente()
         else:
             print("No ingresó una opción correcta, pruebe de nuevo")
     if opcion == 2:
@@ -34,45 +53,34 @@ while opcion != 4:
         print("3. Smart-Tv")
         dispositivo_opcion = int(input("Ingrese su opción: "))
         if 0 < dispositivo_opcion < 4:
-            tiene_todo += 1
-            if tiene_todo == 2:
-                if ctrl_opcion == 1 and dispositivo_opcion == 1:
-                    usuario = Client(True, Remote(Radio))
-                if ctrl_opcion == 1 and dispositivo_opcion == 2:
-                    usuario = Client(True, Remote(TV))
-                if ctrl_opcion == 1 and dispositivo_opcion == 3:
-                    usuario = Client(True, Remote(SmartTV))
-                if ctrl_opcion == 2 and dispositivo_opcion == 1:
-                    usuario = Client(False, AdvancedRemote(Radio))
-                if ctrl_opcion == 2 and dispositivo_opcion == 2:
-                    usuario = Client(False, AdvancedRemote(TV))
-                if ctrl_opcion == 2 and dispositivo_opcion == 3:
-                    usuario = Client(False, AdvancedRemote(SmartTV))
+            tiene_dispositivo = True
+            usuario = definir_cliente()
         else:
             print("No ingresó una opción correcta, pruebe de nuevo")
     if opcion == 3:
-        acciones: int = 0
-        print("\n   Acciones")
-        print("1. Encender / Apagar")
-        print("2. Subir Volumen")
-        print("3. Bajar Volumen")
-        print("4. Subir Canal")
-        print("5. Bajar Canal")
-        if ctrl_opcion == 2:
-            print("6. Mutear")
-        acciones = int(input("Ingrese su opción: "))
-        if acciones == 1:
-            usuario.control.toggle_power()
-        elif acciones == 2:
-            usuario.control.volumen_up()
-        elif acciones == 3:
-            usuario.control.volumen_down()
-        elif acciones == 4:
-            usuario.control.channel_up()
-        elif acciones == 5:
-            usuario.control.channel_down()
-        elif acciones == 6 and ctrl_opcion == 2:
-            usuario.cotrol.mute()
+        if tiene_control and tiene_dispositivo:
+            acciones: int = 0
+            print("\n   Acciones")
+            print("1. Encender / Apagar")
+            print("2. Subir Volumen")
+            print("3. Bajar Volumen")
+            print("4. Subir Canal")
+            print("5. Bajar Canal")
+            if ctrl_opcion == 2:
+                print("6. Mutear")
+            acciones = int(input("Ingrese su opción: "))
+            if acciones == 1:
+                usuario.control.toggle_power()
+            elif acciones == 2:
+                usuario.control.volumen_up()
+            elif acciones == 3:
+                usuario.control.volumen_down()
+            elif acciones == 4:
+                usuario.control.channel_up()
+            elif acciones == 5:
+                usuario.control.channel_down()
+            elif acciones == 6 and ctrl_opcion == 2:
+                usuario.cotrol.mute()
     if opcion == 4:
         print("Adios")
         print("Programa realizado por Bryan Bac y Laura Mejia")

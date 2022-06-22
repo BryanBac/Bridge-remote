@@ -3,6 +3,7 @@ from abc import abstractmethod
 
 
 class Device(metaclass=ABCMeta):
+    @abstractmethod
     def is_enabled(self):
         raise NotImplementedError
 
@@ -23,4 +24,3 @@ class Device(metaclass=ABCMeta):
 
     def set_channel(self, channel: int):
         raise NotImplementedError
-        
